@@ -210,6 +210,61 @@ let
 	stem(-8:8, c.(-8:8))
 end
 
+# ╔═╡ 8ea741f6-8e40-4938-b37d-bffeeb95d453
+md"""
+## Ejercicio 8
+"""
+
+# ╔═╡ 8a861826-54d1-4cbe-bb51-97f868c779b8
+x8 = t -> sin(t)
+
+# ╔═╡ fbe7ac93-523e-448b-86da-abaa603fa4ef
+plot(x8, -10 ,10)
+
+# ╔═╡ d4bea7f8-2a4c-4d39-ad08-e1f8691a7dd0
+y1 = t -> x8(2*t)
+
+# ╔═╡ 149ae5ce-ff1f-4e3d-956b-97a448649fdc
+plot(y1, -10, 10)
+
+# ╔═╡ 70de9113-2c54-4dfe-8bce-8799246cc3f5
+y2 = t -> x8(t/2)
+
+# ╔═╡ 77b1d0cc-fcae-4cc4-90d3-614b4207e069
+plot(y2, -20, 20)
+
+# ╔═╡ edf7f2e1-69b8-4b9f-9628-977e531400fb
+md"""
+a. Si x8 es periodica -> y1 es periodica. **Verdadero**. Probar con x8 = sin(t)
+
+b. Si y1 es periodica -> x8 es periodica. **Verdadero?**
+
+y1(t) = y1(t + T) por ser periodica
+
+y1(t) = x8(2t) por def
+
+y1(t + T) = x8(2t + 2T) por def
+
+x8(2t) = x8(2t + 2T) -> x8 es periodica con periodo 2T
+
+
+c. Si x8 es periodica -> y2 es periodica. **Verdadero**. Probar con x8 = sin(t)
+
+d. Si y2 es periodica -> x8 es periodica. **Verdadero?**
+
+y2(t) = y2(t + T) por ser periodica
+
+y2(t) = x8(t/2) por def
+
+y1(t + T) = x8(t/2 + T/2) por def
+
+x8(t/2) = x8(t/2 + T/2) -> x8 es periodica con periodo T/2
+
+"""
+
+# ╔═╡ 479ccac4-e3b2-4467-b8b6-6306673b41ad
+
+
 # ╔═╡ Cell order:
 # ╠═161ba131-c7c4-41f4-bdc8-25e9346f0f4f
 # ╟─4a1f5e34-9d79-11eb-0204-4147c85d5542
@@ -255,3 +310,12 @@ end
 # ╠═b4c91ffd-a1dc-42b6-bbfb-e3026ff48846
 # ╠═7ea80b1e-cecd-49e8-9e6c-a56903595d46
 # ╠═049b6a08-a092-4d9d-ae9b-d222f83930d4
+# ╠═8ea741f6-8e40-4938-b37d-bffeeb95d453
+# ╠═8a861826-54d1-4cbe-bb51-97f868c779b8
+# ╠═fbe7ac93-523e-448b-86da-abaa603fa4ef
+# ╠═d4bea7f8-2a4c-4d39-ad08-e1f8691a7dd0
+# ╠═149ae5ce-ff1f-4e3d-956b-97a448649fdc
+# ╠═70de9113-2c54-4dfe-8bce-8799246cc3f5
+# ╠═77b1d0cc-fcae-4cc4-90d3-614b4207e069
+# ╠═edf7f2e1-69b8-4b9f-9628-977e531400fb
+# ╠═479ccac4-e3b2-4467-b8b6-6306673b41ad
