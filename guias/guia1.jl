@@ -144,7 +144,7 @@ md"""
 
 # ╔═╡ 3a7a6e2e-f555-4464-b074-d6cf0b2d9e8b
 function xn(n)
-	n < 10 && return 1
+	n < 10 && n > 0 && return 1
 	n >= 10 && n < 20 && return 2-(n/10)
 	return 0
 end
@@ -152,11 +152,15 @@ end
 # ╔═╡ fa4dd6fa-0f3f-48c4-b31c-16bb82b1354f
 stem(0:25, xn.(0:25))
 
+# ╔═╡ 26e883af-b3e3-4c89-8635-b2c30cb83c4b
+plot(xn, 0 ,25)
+
 # ╔═╡ fea913be-9771-4d70-a7bf-a678bc18824e
 # a
 let
-	a = n -> xn(3 * n / 2 + 1)
+	a = n -> xn((3 * n / 2) + 1)
 	stem(0:25, a.(0:25))
+	plot(a, -1 ,25)
 end
 
 # ╔═╡ 9da46f08-9d01-4730-9710-b0fb83ae8bee
@@ -164,6 +168,7 @@ end
 let
 	b = n -> xn((-2*n)-1) 
 	stem(0:25, b.(0:25))
+	# plot(b, 0 ,25)
 end
 
 # ╔═╡ ecebe642-b296-416f-a598-edbcf1951e3c
@@ -171,6 +176,7 @@ end
 let
 	c = n -> xn(n*0.5 - 0.5)
 	stem(0:25, c.(0:25))
+	plot(c, 0 ,45)
 end
 
 # ╔═╡ 60b7346c-a0ab-4c95-9180-62f1d15dfb5e
@@ -262,8 +268,107 @@ x8(t/2) = x8(t/2 + T/2) -> x8 es periodica con periodo T/2
 
 """
 
-# ╔═╡ 479ccac4-e3b2-4467-b8b6-6306673b41ad
+# ╔═╡ 576a7241-a05d-46bc-b3f8-57d83a64d6ae
+md"""
+## Ejercicio 9
+"""
 
+# ╔═╡ 931490a7-3509-41a4-b73d-5569dc39097a
+# https://www.youtube.com/watch?v=cWs6wIM5dqY
+
+# ╔═╡ e047bb46-8725-4f54-a5bf-5f83891afe81
+md"""
+## Ejercicio 13
+"""
+
+# ╔═╡ 89186c3e-5683-4fd0-bc15-5bc428885964
+md"""
+a. La suma de dos señales senoidales de tiempo continuo de frecuencias f1 y f2 es siempre una señal periódica. **VERDADERO?**
+"""
+
+# ╔═╡ ae4f384b-d220-4f05-a436-e7d01f807cc5
+md"""
+Ta = $(@bind Ta Slider(0:10; show_value=true, default=1))
+
+Tb = $(@bind Tb Slider(0:10; show_value=true, default=2))
+"""
+
+# ╔═╡ 431a0672-343b-45e2-adf5-46fbc5784b7d
+plot(t -> cos(Ta*t)+sin(Tb*t), 0 , 50)
+
+# ╔═╡ 0b71838b-990a-4ad1-b00b-9c47eed89199
+md"""
+b. Ídem para dos señales periódicas de tiempo discreto. **FALSO? Solo si hay una relacion entre Ta y Tb**
+"""
+
+# ╔═╡ 7d6f1122-dfa7-4626-af68-2317d44da817
+let
+	xn = n -> cos(Ta*n)+sin(Tb*n)
+	stem(0:100, xn.(0:100))
+end
+
+
+# ╔═╡ ee00d004-6abc-43ad-be8b-d125963fba42
+md"""
+## Ejercicio 14
+"""
+
+# ╔═╡ 4b7fcf17-5e0d-438a-8428-a281ce223026
+# a
+let
+	a = n -> cos(2*π*n/12) 
+	stem(0:25, a.(0:25))
+end
+
+# ╔═╡ 79939eea-f842-4fe0-9c5d-59aac80a48c9
+# b
+let
+	x = n -> cos(8*π*n/31) 
+	stem(0:30, x.(0:30))
+	# no es periodica
+end
+
+# ╔═╡ bcc64f97-75c9-479c-84d0-6a494625054f
+# c
+let
+	x = n -> cos(n/6) 
+	stem(0:30, x.(0:30))
+	# es periodica
+end
+
+# ╔═╡ b03cb1db-9c3d-47d9-a117-bb3b43f28c5d
+# d
+let
+	xt = t -> sin(20*π*t)
+	x = n -> xt(n/1000)
+	stem(0:200, x.(0:200))
+	# es periodica
+end
+
+# ╔═╡ 1d79df6b-f7cd-4259-8f06-7c2e0ad6caf0
+# d
+let
+	x = n -> sum(k -> cos(π*k*n / 32), 0:50)
+	stem(0:200, x.(0:200))
+	# es periodica
+end
+
+# ╔═╡ 45fc5ba9-a19a-4c3c-ae52-c39743902cf8
+# f
+let
+	x = n -> sum(k -> real(sin(π*k / 4)*(1/π*k)*exp(im * k* n * π/32)), 0:50)
+	stem(0:200, x.(0:200))
+	# es periodica
+end
+
+# ╔═╡ c71b9f3b-aaee-482a-8845-6eae1beb74ec
+# g
+let
+	f = k -> 10 * tan(3 * π * k / 400)
+	x = n -> sum(k -> cos(π*f(k)*n / 32), 0:50)
+	stem(0:200, x.(0:200))
+	# no es periodica
+end
 
 # ╔═╡ Cell order:
 # ╠═161ba131-c7c4-41f4-bdc8-25e9346f0f4f
@@ -301,6 +406,7 @@ x8(t/2) = x8(t/2 + T/2) -> x8 es periodica con periodo T/2
 # ╠═9845d730-1422-48b3-ac29-c461cecfcd3e
 # ╠═3a7a6e2e-f555-4464-b074-d6cf0b2d9e8b
 # ╠═fa4dd6fa-0f3f-48c4-b31c-16bb82b1354f
+# ╠═26e883af-b3e3-4c89-8635-b2c30cb83c4b
 # ╠═fea913be-9771-4d70-a7bf-a678bc18824e
 # ╠═9da46f08-9d01-4730-9710-b0fb83ae8bee
 # ╠═ecebe642-b296-416f-a598-edbcf1951e3c
@@ -318,4 +424,19 @@ x8(t/2) = x8(t/2 + T/2) -> x8 es periodica con periodo T/2
 # ╠═70de9113-2c54-4dfe-8bce-8799246cc3f5
 # ╠═77b1d0cc-fcae-4cc4-90d3-614b4207e069
 # ╠═edf7f2e1-69b8-4b9f-9628-977e531400fb
-# ╠═479ccac4-e3b2-4467-b8b6-6306673b41ad
+# ╠═576a7241-a05d-46bc-b3f8-57d83a64d6ae
+# ╠═931490a7-3509-41a4-b73d-5569dc39097a
+# ╟─e047bb46-8725-4f54-a5bf-5f83891afe81
+# ╟─89186c3e-5683-4fd0-bc15-5bc428885964
+# ╟─ae4f384b-d220-4f05-a436-e7d01f807cc5
+# ╠═431a0672-343b-45e2-adf5-46fbc5784b7d
+# ╟─0b71838b-990a-4ad1-b00b-9c47eed89199
+# ╠═7d6f1122-dfa7-4626-af68-2317d44da817
+# ╠═ee00d004-6abc-43ad-be8b-d125963fba42
+# ╠═4b7fcf17-5e0d-438a-8428-a281ce223026
+# ╠═79939eea-f842-4fe0-9c5d-59aac80a48c9
+# ╠═bcc64f97-75c9-479c-84d0-6a494625054f
+# ╠═b03cb1db-9c3d-47d9-a117-bb3b43f28c5d
+# ╠═1d79df6b-f7cd-4259-8f06-7c2e0ad6caf0
+# ╠═45fc5ba9-a19a-4c3c-ae52-c39743902cf8
+# ╠═c71b9f3b-aaee-482a-8845-6eae1beb74ec
