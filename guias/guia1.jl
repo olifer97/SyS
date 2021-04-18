@@ -251,7 +251,7 @@ y1(t) = x8(2t) por def
 
 y1(t + T) = x8(2t + 2T) por def
 
-x8(2t) = x8(2t + 2T) -> x8 es periodica con periodo 2T
+x8(2t) = x8(2t + 2T) -> x8 es periodica con periodo T/2 (no es la mitad?)
 
 
 c. Si x8 es periodica -> y2 es periodica. **Verdadero**. Probar con x8 = sin(t)
@@ -264,7 +264,7 @@ y2(t) = x8(t/2) por def
 
 y1(t + T) = x8(t/2 + T/2) por def
 
-x8(t/2) = x8(t/2 + T/2) -> x8 es periodica con periodo T/2
+x8(t/2) = x8(t/2 + T/2) -> x8 es periodica con periodo 2T (no es el doble?)
 
 """
 
@@ -319,13 +319,22 @@ Como dos puntos contiguos en la versión original se mueven a un punto, un cero 
 # https://www.youtube.com/watch?v=cWs6wIM5dqY
 
 # ╔═╡ 59e33926-663a-477f-ab87-f57c42e4a978
-
+md""" 
+## Ejercicio 10
+"""
 
 # ╔═╡ dbdbaecd-ad25-4301-a373-dd6ca42d1241
-
+function y1_10(x, n)
+	return x(2n)
+end
 
 # ╔═╡ 4a8eceb5-ab41-4b60-9527-a08c4156c579
-
+function y2_10(x, n)
+	if mod(n, 2) == 0
+		return x(n/2)
+	end
+	return 0
+end
 
 # ╔═╡ e047bb46-8725-4f54-a5bf-5f83891afe81
 md"""
@@ -348,7 +357,20 @@ Tb = $(@bind Tb Slider(0:10; show_value=true, default=2))
 plot(t -> cos(Ta*t)+sin(Tb*t), 0 , 50)
 
 # ╔═╡ 50077ef4-8465-434f-b782-236ae216344f
+md"""
 
+a) La suma de dos señales senoidales de tiempo continuo de frecuencias f1 y f2 es siempre una señal periódica.
+
+f(t) = sin(2π * f1 * t) + sin(2π * f2 * t)
+
+**Falso**
+
+Contraejemplo: f1 = 1/2π y f2 = 1/2 la suma no es una función periódica
+
+Supuestamente se da cuando f1/f2 es irracional
+
+f(t) = sin(t) + sin(πt)
+"""
 
 # ╔═╡ 4f62d31d-3c64-4258-9a80-72c140ea4cb3
 x13 = t -> sin(t) + sin(π*t)
@@ -406,7 +428,7 @@ let
 end
 
 # ╔═╡ 1d79df6b-f7cd-4259-8f06-7c2e0ad6caf0
-# d
+# e
 let
 	x = n -> sum(k -> cos(π*k*n / 32), 0:50)
 	stem(0:200, x.(0:200))
