@@ -346,7 +346,7 @@ let
 end
 
 # ╔═╡ 1d79df6b-f7cd-4259-8f06-7c2e0ad6caf0
-# d
+# e
 let
 	x = n -> sum(k -> cos(π*k*n / 32), 0:50)
 	stem(0:200, x.(0:200))
