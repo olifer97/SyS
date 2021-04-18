@@ -251,7 +251,7 @@ y1(t) = x8(2t) por def
 
 y1(t + T) = x8(2t + 2T) por def
 
-x8(2t) = x8(2t + 2T) -> x8 es periodica con periodo 2T
+x8(2t) = x8(2t + 2T) -> x8 es periodica con periodo T/2 (no es la mitad el periodo?)
 
 
 c. Si x8 es periodica -> y2 es periodica. **Verdadero**. Probar con x8 = sin(t)
@@ -264,7 +264,7 @@ y2(t) = x8(t/2) por def
 
 y1(t + T) = x8(t/2 + T/2) por def
 
-x8(t/2) = x8(t/2 + T/2) -> x8 es periodica con periodo T/2
+x8(t/2) = x8(t/2 + T/2) -> x8 es periodica con periodo 2T (no es el doble del periodo?)
 
 """
 
