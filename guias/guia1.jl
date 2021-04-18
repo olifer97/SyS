@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.14.2
+# v0.14.1
 
 using Markdown
 using InteractiveUtils
@@ -251,7 +251,7 @@ y1(t) = x8(2t) por def
 
 y1(t + T) = x8(2t + 2T) por def
 
-x8(2t) = x8(2t + 2T) -> x8 es periodica con periodo T/2 (no es la mitad el periodo?)
+x8(2t) = x8(2t + 2T) -> x8 es periodica con periodo 2T
 
 
 c. Si x8 es periodica -> y2 es periodica. **Verdadero**. Probar con x8 = sin(t)
@@ -264,7 +264,7 @@ y2(t) = x8(t/2) por def
 
 y1(t + T) = x8(t/2 + T/2) por def
 
-x8(t/2) = x8(t/2 + T/2) -> x8 es periodica con periodo 2T (no es el doble del periodo?)
+x8(t/2) = x8(t/2 + T/2) -> x8 es periodica con periodo T/2
 
 """
 
@@ -273,8 +273,59 @@ md"""
 ## Ejercicio 9
 """
 
+# ╔═╡ 622292c5-e234-4ca2-9094-b548a12f81f3
+md"""
+a) Si x(n) es periódica, entonces y1(n) es periódica.
+
+**Verdadero**
+
+Si x es N periódica, y1 es N/2 periódica
+
+y1(n + N/2) = x(2(n + N/2)) = x(2n + N) = x(2n) = y1(n)
+"""
+
+# ╔═╡ f5f4846c-f233-4a0d-bba5-f3126553472b
+md"""
+b) Si y1(n) es periódica, entonces x(n) es periódica.
+
+**Falso**
+
+Contraejemplo: en y1(n) tomo solo los enteros pares, entonces si esa versión es periódica, al agregar en los impares una combinación que no resulta de una señal periódica y1(n) sigue siendo periódica pero no así x(n).
+"""
+
+# ╔═╡ 85d40aa0-72e4-4037-a24b-78b7fb7bc8db
+md"""
+c) Si x(n) es periódica, entonces y2(n) es periódica.
+
+**Verdadero**
+
+Si x es N periódica, y2 es 2N periódica
+
+y2(n + 2N) = x(1/2(n + 2N)) = x(n/2 + N) = x(n/2) = y2(n)
+
+"""
+
+# ╔═╡ 2013f095-2fab-4c87-9898-ecc8b4b8e0eb
+md"""
+d) Si y2(n) es periódica, entonces x(n) es periódica.
+
+**Verdadero**
+
+Como dos puntos contiguos en la versión original se mueven a un punto, un cero y otro punto, si es periódica la segunda, no hay forma que la primera no lo sea. En el caso anterior era distinto porque había puntos en la señal original (los impares) que no se mapeaban entonces se podían llenar con una combinación no periódica.
+
+"""
+
 # ╔═╡ 931490a7-3509-41a4-b73d-5569dc39097a
 # https://www.youtube.com/watch?v=cWs6wIM5dqY
+
+# ╔═╡ 59e33926-663a-477f-ab87-f57c42e4a978
+
+
+# ╔═╡ dbdbaecd-ad25-4301-a373-dd6ca42d1241
+
+
+# ╔═╡ 4a8eceb5-ab41-4b60-9527-a08c4156c579
+
 
 # ╔═╡ e047bb46-8725-4f54-a5bf-5f83891afe81
 md"""
@@ -295,6 +346,15 @@ Tb = $(@bind Tb Slider(0:10; show_value=true, default=2))
 
 # ╔═╡ 431a0672-343b-45e2-adf5-46fbc5784b7d
 plot(t -> cos(Ta*t)+sin(Tb*t), 0 , 50)
+
+# ╔═╡ 50077ef4-8465-434f-b782-236ae216344f
+
+
+# ╔═╡ 4f62d31d-3c64-4258-9a80-72c140ea4cb3
+x13 = t -> sin(t) + sin(π*t)
+
+# ╔═╡ 8953fc1e-0e8e-4781-b896-35d11207fb4c
+plot(x13, 0, 60)
 
 # ╔═╡ 0b71838b-990a-4ad1-b00b-9c47eed89199
 md"""
@@ -346,7 +406,7 @@ let
 end
 
 # ╔═╡ 1d79df6b-f7cd-4259-8f06-7c2e0ad6caf0
-# e
+# d
 let
 	x = n -> sum(k -> cos(π*k*n / 32), 0:50)
 	stem(0:200, x.(0:200))
@@ -425,11 +485,21 @@ end
 # ╠═77b1d0cc-fcae-4cc4-90d3-614b4207e069
 # ╠═edf7f2e1-69b8-4b9f-9628-977e531400fb
 # ╠═576a7241-a05d-46bc-b3f8-57d83a64d6ae
+# ╠═622292c5-e234-4ca2-9094-b548a12f81f3
+# ╠═f5f4846c-f233-4a0d-bba5-f3126553472b
+# ╠═85d40aa0-72e4-4037-a24b-78b7fb7bc8db
+# ╠═2013f095-2fab-4c87-9898-ecc8b4b8e0eb
 # ╠═931490a7-3509-41a4-b73d-5569dc39097a
+# ╠═59e33926-663a-477f-ab87-f57c42e4a978
+# ╠═dbdbaecd-ad25-4301-a373-dd6ca42d1241
+# ╠═4a8eceb5-ab41-4b60-9527-a08c4156c579
 # ╟─e047bb46-8725-4f54-a5bf-5f83891afe81
 # ╟─89186c3e-5683-4fd0-bc15-5bc428885964
 # ╟─ae4f384b-d220-4f05-a436-e7d01f807cc5
 # ╠═431a0672-343b-45e2-adf5-46fbc5784b7d
+# ╠═50077ef4-8465-434f-b782-236ae216344f
+# ╠═4f62d31d-3c64-4258-9a80-72c140ea4cb3
+# ╠═8953fc1e-0e8e-4781-b896-35d11207fb4c
 # ╟─0b71838b-990a-4ad1-b00b-9c47eed89199
 # ╠═7d6f1122-dfa7-4626-af68-2317d44da817
 # ╠═ee00d004-6abc-43ad-be8b-d125963fba42
