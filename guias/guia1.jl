@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.14.1
+# v0.14.2
 
 using Markdown
 using InteractiveUtils
@@ -121,21 +121,10 @@ N = $(@bind N Slider(1:100; show_value=true, default=2))
 """
 
 # ╔═╡ cc94a15b-b0d8-475c-ad61-503f89ee133e
-x4 = n -> A*(u(n)*u(N - n)) #MAAAAAL
-
-# ╔═╡ 464b36f6-5ca2-44b5-b27d-e84ea48a3d44
-function pulso(n) #MAAAAL
-	k = (N * round(n/N))+1
-	println(k)
-	n%N == 0 && return A
-	return -A
-end
-
-# ╔═╡ 580f2224-c54b-445c-bb38-422fe045b8f5
-pulso(0)
+x4 = n -> A*(u(n)*u(n - N))
 
 # ╔═╡ 33f47f8f-4722-45b2-9b27-c3ff9ef4975e
-stem(-2*N:2*N, pulso.(-2*N:2*N))
+stem(-2*N:2*N, x4.(-2*N:2*N))
 
 # ╔═╡ 9845d730-1422-48b3-ac29-c461cecfcd3e
 md"""
@@ -482,8 +471,6 @@ end
 # ╠═080cac50-0604-48c7-a6b2-779fa9ca7eb4
 # ╠═49f3371a-cfe7-49d2-b15e-4bd41a99bcef
 # ╠═cc94a15b-b0d8-475c-ad61-503f89ee133e
-# ╠═464b36f6-5ca2-44b5-b27d-e84ea48a3d44
-# ╠═580f2224-c54b-445c-bb38-422fe045b8f5
 # ╠═33f47f8f-4722-45b2-9b27-c3ff9ef4975e
 # ╠═9845d730-1422-48b3-ac29-c461cecfcd3e
 # ╠═3a7a6e2e-f555-4464-b074-d6cf0b2d9e8b
